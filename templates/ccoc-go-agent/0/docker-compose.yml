@@ -1,5 +1,7 @@
+{{- if eq .Values.DOCKER "false" }}
 version: '2'
 services:
+{{- end }}
   go-cd-agent:
     environment:
       GO_SERVER_URL: ${GO_SERVER_URL}
@@ -20,7 +22,7 @@ services:
     privileged: true
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    {{- end }}  
+    {{- end }}
   {{- if eq .Values.DOCKER "true" }}
   docker:
     labels:
