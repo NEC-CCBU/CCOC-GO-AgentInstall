@@ -26,7 +26,7 @@ catalog:
       required: true
     - variable: AGENT_AUTO_REGISTER_HOSTNAME
       label: Name
-      description: Name for registry
+      description: Name used for agent registration
       required: true
       type: string
     - variable: DOCKER
@@ -34,11 +34,12 @@ catalog:
       description: Attach a docker engine to the agent
       required: true
       type: boolean
-
 services:
   go-cd-agent:
     scale: 1
     start_on_create: true
+  {{- if eq .Values.DOCKER "true" }}
   docker:
     scale: 1
     start_on_create: true
+  {{- end }}

@@ -7,12 +7,20 @@ services:
       AGENT_AUTO_REGISTER_RESOURCES: ${AGENT_AUTO_REGISTER_RESOURCES}
       AGENT_AUTO_REGISTER_ENVIRONMENTS: ${AGENT_AUTO_REGISTER_ENVIRONMENTS}
       AGENT_AUTO_REGISTER_HOSTNAME: ${AGENT_AUTO_REGISTER_ENVIRONMENTS}
+      {{- if eq .Values.DOCKER "false" }}
+      DOCKER_HOST: unix:///var/run/docker.sock
+      {{- end }}
     labels:
       {{- if eq .Values.DOCKER "true" }}
       io.rancher.sidekicks: docker
       {{- end }}
       io.rancher.container.pull_image: always
     image: registry.nec-saas.com:5000/ccoc/go-agent:1.5
+    {{- if eq .Values.DOCKER "false" }}
+    privileged: true
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    {{- end }}  
   {{- if eq .Values.DOCKER "true" }}
   docker:
     labels:
