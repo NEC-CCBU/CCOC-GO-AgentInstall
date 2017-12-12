@@ -1,0 +1,44 @@
+version: '2'
+
+catalog:
+  name: go-cd-agent
+  version: 1
+  description: CCOC GO CD Agent
+  questions:
+    - variable: GO_SERVER_URL
+      label: Server URL
+      description: GOCD Server URL
+      required: true
+      type: string
+    - variable: AGENT_AUTO_REGISTER_KEY
+      label: Autoregister Key
+      description: Autoregister Key for GOCD Server
+      required: true
+      type: string
+    - variable: AGENT_AUTO_REGISTER_RESOURCES
+      label: Resources
+      description: Resources provided by this Agent
+      required: true
+      type: string
+    - variable: AGENT_AUTO_REGISTER_ENVIRONMENTS
+      label: Environments
+      description: Environments where to register this Agent
+      required: true
+    - variable: AGENT_AUTO_REGISTER_HOSTNAME
+      label: Name
+      description: Name for registry
+      required: true
+      type: string
+    - variable: LOTA_LAUNCH
+      label: Create Docker engine?
+      description: Attach a docker engine to the agent
+      required: true
+      type: boolean
+
+services:
+  go-cd-agent:
+    scale: 1
+    start_on_create: true
+  docker:
+    scale: 1
+    start_on_create: true

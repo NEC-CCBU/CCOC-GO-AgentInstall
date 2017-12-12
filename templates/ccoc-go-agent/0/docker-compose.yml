@@ -1,0 +1,18 @@
+version: '2'
+services:
+  go-cd-agent:
+    environment:
+      GO_SERVER_URL: ${GO_SERVER_URL}
+      AGENT_AUTO_REGISTER_KEY: ${AGENT_AUTO_REGISTER_KEY}
+      AGENT_AUTO_REGISTER_RESOURCES: ${AGENT_AUTO_REGISTER_RESOURCES}
+      AGENT_AUTO_REGISTER_ENVIRONMENTS: ${AGENT_AUTO_REGISTER_ENVIRONMENTS}
+      AGENT_AUTO_REGISTER_HOSTNAME: ${AGENT_AUTO_REGISTER_ENVIRONMENTS}
+    labels:
+      io.rancher.sidekicks: docker
+      io.rancher.container.pull_image: always
+    image: registry.nec-saas.com:5000/ccoc/go-agent:1.5
+  docker:
+    labels:
+      io.rancher.container.pull_image: always
+    image: registry.nec-saas.com:5000/ccoc/go-agent-docker-engine:1.1
+    privileged: true
