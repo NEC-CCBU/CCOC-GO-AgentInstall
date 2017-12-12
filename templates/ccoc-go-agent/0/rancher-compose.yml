@@ -29,7 +29,7 @@ catalog:
       description: Name for registry
       required: true
       type: string
-    - variable: LOTA_LAUNCH
+    - variable: DOCKER
       label: Create Docker engine?
       description: Attach a docker engine to the agent
       required: true
