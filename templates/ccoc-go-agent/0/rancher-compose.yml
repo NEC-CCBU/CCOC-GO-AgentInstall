@@ -38,8 +38,6 @@ services:
   go-cd-agent:
     scale: 1
     start_on_create: true
-  {{- if eq .Values.DOCKER "true" }}
   docker:
     scale: 1
     start_on_create: true
-  {{- end }}
