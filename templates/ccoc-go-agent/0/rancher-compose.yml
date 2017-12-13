@@ -15,11 +15,6 @@ catalog:
       description: Autoregister Key for GOCD Server
       required: true
       type: string
-    - variable: AGENT_AUTO_REGISTER_RESOURCES
-      label: Resources
-      description: Resources provided by this Agent
-      required: true
-      type: string
     - variable: AGENT_AUTO_REGISTER_ENVIRONMENTS
       label: Environments
       description: Environments where to register this Agent
